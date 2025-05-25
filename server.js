@@ -20,8 +20,8 @@ app.use(cors({
     origin: [
         'http://localhost:3000',                                    // Local development
                                             // Vite local
-        'https://shimmering-griffin-da1614.netlify.app',          // Your deployed frontend
-        'https://todo-app-backend-bwfn.onrender.com'              // Your backend (for testing)
+        'https://aquamarine-bublanina-dedc64.netlify.app',          // Your deployed frontend
+        'https://todo-app-backend-bwfn.onrender.com/api'              // Your backend (for testing)
     ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
