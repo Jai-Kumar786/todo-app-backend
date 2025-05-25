@@ -15,11 +15,17 @@ const taskRoutes = require('./routes/taskRoutes');
 
 const app = express();
 
-// Enable CORS (Updated)
+// Enable CORS - Updated for production
 app.use(cors({
-    origin: 'http://localhost:3000', // Replace with your frontend URL
+    origin: [
+        'http://localhost:3000',                                    // Local development
+                                            // Vite local
+        'https://shimmering-griffin-da1614.netlify.app',          // Your deployed frontend
+        'https://todo-app-backend-bwfn.onrender.com'              // Your backend (for testing)
+    ],
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token']
 }));
 
 // Body parser
@@ -43,6 +49,5 @@ app.listen(PORT, () => {
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (err, promise) => {
     console.log(`Error: ${err.message}`);
-    // Close server & exit process
     process.exit(1);
 });
