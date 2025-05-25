@@ -15,14 +15,15 @@ const taskRoutes = require('./routes/taskRoutes');
 
 const app = express();
 
+// Enable CORS (Updated)
+app.use(cors({
+    origin: 'http://localhost:3000', // Replace with your frontend URL
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']
+}));
+
 // Body parser
 app.use(express.json());
-
-// Enable CORS
-app.use(cors({
-    origin: true,
-    credentials: true
-}));
 
 // Mount routers
 app.use('/api/auth', authRoutes);
@@ -36,7 +37,7 @@ app.get('/', (req, res) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    console.log(`Server running in on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
 
 // Handle unhandled promise rejections
